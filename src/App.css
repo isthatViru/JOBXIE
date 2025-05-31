@@ -1,0 +1,17 @@
+/* App.css */
+@import "swiper/css";
+@import "swiper/css/autoplay";
+@import "swiper/css/pagination";
+
+html, body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding-top: 80px;
+  background-color: #7091E6 !important;
+  font-family: 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+}

@@ -1,0 +1,24 @@
+.glass-navbar {
+  background-color: rgba(255, 255, 255, 0.007); /* More transparent */
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 20px; /* Circular edges */
+  margin: 10px 20px;
+  padding: 10px 20px;
+  
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+}
+
+.navbar-brand,
+.nav-link {
+  color: #ffffff !important;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover,
+.navbar-brand:hover {
+  color: #00ffff !important;
+  text-shadow: 0 0 10px #00ffff;
+}
