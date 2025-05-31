@@ -457,7 +457,7 @@ const Home = () => {
     <div className="row text-center text-md-start">
  
       <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-        <h5 className="text-uppercase mb-4 font-weight-bold text-primary">YourBrand</h5>
+        <h5 className="text-uppercase mb-4 font-weight-bold text-primary">JOBXIE</h5>
         <p>
           Bringing you the best solutions with love & expertise. We’re here to make your life easier and smarter.
         </p>
