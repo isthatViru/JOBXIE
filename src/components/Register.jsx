@@ -3,9 +3,10 @@ import {NavLink} from 'react-router-dom'
 import { collection, addDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../firebase"; // ✅ Use your exported instances
-
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+  const nav=useNavigate();
 const [name, setName] = useState("");
 const [email, setEmail] = useState("");
 const [role, setRole] = useState("");
@@ -46,6 +47,7 @@ const handleSubmit = async (e) => {
     setRole("");
     setPassword("");
     setConfirmPassword("");
+    nav('/')
 
   } catch (error) {
     console.error("❌ Error registering user:", error.message);
@@ -64,7 +66,7 @@ const handleSubmit = async (e) => {
         
       }
     </style>
-    <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light mt-5 " style={{marginLeft:'25rem'}}>
+    <div className="d-flex justify-content-center align-items-center min-vh-100  " style={{marginTop:'10rem'}}>
       <div className="col-lg-6 col-md-8 col-sm-10 bg-white p-5 rounded shadow " style={{  width: '50rem' }}>
         <h2 className="mb-4 text-center fw-bold text-primary">Create an Account</h2>
         

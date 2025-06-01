@@ -1,90 +1,107 @@
+// React core hooks
 import React, { useState, useEffect } from 'react';
+// Axios for API requests
 import axios from 'axios';
+// Reusable component to display individual job info
 import JobCard from './jobcard';
+// Custom CSS for styling the Jobs section
 import '../style/Jobs.css';
 
 const Jobs = () => {
-  const [jobs, setJobs] = useState([]);
-  const [search, setSearch] = useState('');
-  const [location, setLocation] = useState('');
-  const [jobType, setJobType] = useState('');
-  const [sortBy, setSortBy] = useState('Relevance');
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  // ===================== STATE HOOKS ======================
+  const [jobs, setJobs] = useState([]);                 // Stores list of job data
+  const [search, setSearch] = useState('');             // Search keyword input
+  const [location, setLocation] = useState('');         // Location filter
+  const [jobType, setJobType] = useState('');           // Job type filter (Remote, On-site, Hybrid)
+  const [sortBy, setSortBy] = useState('Relevance');    // Sorting option (Relevance or Date)
+  const [page, setPage] = useState(1);                  // Current page for pagination
+  const [loading, setLoading] = useState(false);        // Loading state (for spinners/loaders)
 
+  // ===================== API CALL FUNCTION ======================
   const fetchJobs = async (reset = false) => {
-    setLoading(true);
+    setLoading(true); // Show loading spinner
 
     const options = {
       method: 'GET',
-      url: 'https://jsearch.p.rapidapi.com/search',
+      url: 'https://jsearch.p.rapidapi.com/search', // RapidAPI endpoint for job listings
       params: {
-        query: `${search || 'developer'} ${location}`,
-        page: page,
-        num_pages: 1,
-        country: 'in',
-        remote_jobs_only: jobType === 'Remote' ? true : false,
-        sort: sortBy.toLowerCase(), // 'relevance' or 'date'
+        query: `${search || 'developer'} ${location}`, // Main query (default to 'developer')
+        page: page,               // Current page number
+        num_pages: 1,             // Results per fetch (can be tuned)
+        country: 'in',            // Country filter (India)
+        remote_jobs_only: jobType === 'Remote' ? true : false, // Only fetch remote jobs if selected
+        sort: sortBy.toLowerCase(), // Convert "Relevance" or "Date" to API format: "relevance", "date"
       },
       headers: {
-       'x-rapidapi-key': '659829faa5msh4384bc215873709p1c693cjsn357edb3ba3ac',
-    'x-rapidapi-host': 'jsearch.p.rapidapi.com'
+        'x-rapidapi-key': '659829faa5msh4384bc215873709p1c693cjsn357edb3ba3ac', // Your API key
+        'x-rapidapi-host': 'jsearch.p.rapidapi.com'
       },
     };
 
     try {
-      const response = await axios.request(options);
+      const response = await axios.request(options); // Fetch jobs from API
+
+      // If reset (i.e. filters/search changed), replace job list
       if (reset) {
         setJobs(response.data.data);
       } else {
+        // If loading more pages, append new jobs to the existing list
         setJobs((prevJobs) => [...prevJobs, ...response.data.data]);
       }
+
     } catch (error) {
-      console.error('Error fetching jobs:', error);
+      console.error('Error fetching jobs:', error); // Catch any error
     }
-    setLoading(false);
+
+    setLoading(false); // Hide loading spinner
   };
 
-  // Fetch jobs on filters/search change or page change
+  // ================ FETCH JOBS WHEN FILTERS CHANGE ================
   useEffect(() => {
-    fetchJobs(true);
+    fetchJobs(true); // Reset job list on filters/search change
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, location, jobType, sortBy]);
 
-  // Fetch jobs on page increment for load more
+  // ================ FETCH JOBS WHEN PAGE INCREASES (Load More) ================
   useEffect(() => {
-    if (page === 1) return; // Already fetched on filters change
-    fetchJobs();
+    if (page === 1) return; // Page 1 is already fetched above
+    fetchJobs();            // Fetch next page results without reset
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
+  // ================ HANDLE SEARCH FORM SUBMISSION ================
   const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    setPage(1);
-    fetchJobs(true);
+    e.preventDefault(); // Prevent form from reloading the page
+    setPage(1);         // Reset to first page
+    fetchJobs(true);    // Fetch fresh jobs for the new search
   };
 
+  // ================ HANDLE JOB TYPE TOGGLE ================
   const handleJobTypeChange = (type) => {
-    setJobType(type === jobType ? '' : type); // Toggle
+    // Toggle selection (Remote, On-site, Hybrid)
+    setJobType(type === jobType ? '' : type); 
     setPage(1);
   };
 
+  // ================ HANDLE SORT CHANGE ================
   const handleSortChange = (sortOption) => {
-    setSortBy(sortOption);
+    setSortBy(sortOption); // Set sort to 'Relevance' or 'Date'
     setPage(1);
   };
 
+  // ================ HANDLE LOCATION CHANGE ================
   const handleLocationSelect = (city) => {
     setLocation(city);
     setPage(1);
   };
 
+  // ================ UI SECTION ================
   return (
     <div className="container-fluid py-5" style={{ marginTop: '10rem' }}>
       <div className="container">
         <div className="row gy-3 align-items-center">
 
-          {/* Search Input */}
+          {/* Search Bar */}
           <div className="col-md-4">
             <form className="d-flex" role="search" onSubmit={handleSearchSubmit}>
               <input
@@ -111,7 +128,7 @@ const Jobs = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                {location || 'Location'}
+                {location || 'Location'} {/* Show selected city or "Location" */}
               </button>
               <ul className="dropdown-menu" aria-labelledby="locationDropdown">
                 {['Mumbai', 'Bangalore', 'Delhi'].map((city) => (
@@ -128,7 +145,7 @@ const Jobs = () => {
             </div>
           </div>
 
-          {/* Job Type Filter */}
+          {/* Job Type Filter Buttons */}
           <div className="col-md-3">
             <div className="d-flex gap-3 justify-content-between">
               {['Remote', 'On-site', 'Hybrid'].map((type) => (
@@ -170,29 +187,34 @@ const Jobs = () => {
             </div>
           </div>
 
-          {/* Empty col for spacing */}
+          {/* Spacer */}
           <div className="col-md-1"></div>
-
         </div>
 
-        {/* Job Cards */}
+        {/* Job Results */}
         <div className="mt-5">
           <h3 className="text-primary mb-4">Latest Jobs</h3>
+
+          {/* If no jobs found */}
           {jobs.length === 0 && !loading && <p>No jobs found.</p>}
+
+          {/* Grid of job cards */}
           <div className="job-grid">
-          {jobs.map((job) => (
-            <JobCard key={job.job_id} job={job} />
-          ))}
+            {jobs.map((job) => (
+              <JobCard key={job.job_id} job={job} />
+            ))}
           </div>
 
+          {/* Loader */}
           {loading && <p>Loading...</p>}
         </div>
-        {/* Load More */}
+
+        {/* Load More Button (pagination) */}
         {jobs.length > 0 && !loading && (
           <div className="text-center my-4">
             <button
               className="btn btn-outline-primary"
-              onClick={() => setPage((prev) => prev + 1)}
+              onClick={() => setPage((prev) => prev + 1)} // Load next page
             >
               Load More
             </button>
