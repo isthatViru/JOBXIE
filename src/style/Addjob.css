@@ -1,0 +1,76 @@
+/* Container for form */
+.form-container {
+  width: 100%;
+  max-width: 700px; /* or any max width you prefer */
+  margin: 40px auto;
+  margin-top: 100px;
+  padding: 24px 32px;
+  border: 2px solid #333;
+  border-radius: 12px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
+  background-color: #fafafa;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* Form title */
+.form-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #444;
+}
+
+/* Inputs and textarea */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/* Focus effect */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px #007bff;
+}
+
+/* Submit button */
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}

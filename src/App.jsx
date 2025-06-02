@@ -12,6 +12,8 @@ import Resume from './components/Resume';
 import Login from './components/Login';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Register from './components/Register';
+import Addjob from './components/Addjob';
+import Addjobcard from './components/Addjobcard';
 
 function App() {
   return (
@@ -22,6 +24,9 @@ function App() {
             <Route path="/Register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/job" element={<Jobs />} />
+         <Route path="/Createjob" element={<Addjob />} />
+         <Route path="/Addjobcard" element={<Addjobcard />} />
+           <Route path="/Edit/:id" element={<Addjob />} />
         <Route path="/skills" element={<Skills />} />
         <Route path="/resume" element={<Resume />} />
            <Route path="/Login" element={<Login />} />

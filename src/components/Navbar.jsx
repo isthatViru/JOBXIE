@@ -73,6 +73,20 @@ const Navbar = () => {
                 </NavLink>
               </motion.div>
             </li>
+              <li className="nav-item">
+              <motion.div {...fadeIn}>
+                <NavLink className="nav-link" to="/Createjob">
+                  Add Job
+                </NavLink>
+              </motion.div>
+            </li>
+            <li className="nav-item">
+              <motion.div {...fadeIn}>
+                <NavLink className="nav-link" to="/Addjobcard">
+                  Your Jobs
+                </NavLink>
+              </motion.div>
+            </li>
             <li className="nav-item">
               <motion.div {...fadeIn}>
                 <NavLink className="nav-link" to="/skills">

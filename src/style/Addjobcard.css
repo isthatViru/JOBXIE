@@ -1,0 +1,61 @@
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  margin-top: 15rem;
+}
+
+.job-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.2s ease-in-out;
+}
+
+.job-card:hover {
+  transform: translateY(-4px);
+}
+
+.job-card h5 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: red;
+}
+
+.job-card p {
+  color: red;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.job-card h6 {
+  color: purple;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.job-buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-edit {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
