@@ -61,7 +61,7 @@ const Navbar = () => {
             <li className="nav-item">
               <motion.div {...fadeIn}>
                 <a className="nav-link" href="/register">
-                  Register Now
+                  Register
                 </a>
               </motion.div>
             </li>
@@ -143,3 +143,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+ 

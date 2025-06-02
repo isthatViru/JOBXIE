@@ -19,7 +19,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/Register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/job" element={<Jobs />} />
         <Route path="/skills" element={<Skills />} />
@@ -31,3 +31,6 @@ function App() {
 }
 
 export default App;
+
+
+
