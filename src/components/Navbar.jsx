@@ -60,7 +60,7 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <motion.div {...fadeIn}>
-                <a className="nav-link" href="/register">
+                <a className="nav-link" href="/Register">
                   Register
                 </a>
               </motion.div>
